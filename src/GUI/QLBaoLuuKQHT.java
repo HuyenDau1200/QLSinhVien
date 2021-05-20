@@ -37,7 +37,9 @@ public class QLBaoLuuKQHT extends javax.swing.JFrame {
         initComponents();
         loadData();
     }
-
+    public void xoaTrang(){
+        txtMaSV.setText("");
+    }
     DBConnection db = new DBConnection();
     Connection con = db.getConnection();
     PreparedStatement ps;
@@ -251,6 +253,7 @@ public class QLBaoLuuKQHT extends javax.swing.JFrame {
                     loadData();
                     JOptionPane.showMessageDialog(null, "Bảo lưu thành công");
                 }
+                xoaTrang();
             }
         }
         catch(Exception ex){
@@ -300,7 +303,19 @@ public class QLBaoLuuKQHT extends javax.swing.JFrame {
             return;
         }
         try{
-            
+                 int dem=0;
+            Iterator<SinhVien> it = lstSinhVien.iterator();
+            while (it.hasNext()) {
+                SinhVien next = it.next();
+                if(next.getMaSV().trim().equals(txtMaSV.getText().trim())){
+                    dem++;
+                }
+            }
+            if(dem==0){
+                JOptionPane.showMessageDialog(null, "Mã sinh viên cần hủy bảo lưu không tồn tại trong hệ thống");
+                return;
+            }
+            else{
                 ps=con.prepareStatement("Update SinhVien set TinhTrang=? where MaSV=?");
                 String bl = "Đang học";
                 ps.setString(1, bl);
@@ -310,6 +325,8 @@ public class QLBaoLuuKQHT extends javax.swing.JFrame {
                     tableModel.setRowCount(0);
                     loadData();
                     JOptionPane.showMessageDialog(null, "Hủy bảo lưu thành công");
+                }
+                xoaTrang();
                 }
             }
         catch(Exception ex){

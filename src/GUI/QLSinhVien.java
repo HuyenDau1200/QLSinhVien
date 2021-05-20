@@ -418,6 +418,7 @@ public class QLSinhVien extends javax.swing.JFrame {
             else{
                 JOptionPane.showMessageDialog(null, "Mã sinh viên đã tồn tại");
             }
+            xoaTrang();
         }
         catch (Exception ex) {
            JOptionPane.showMessageDialog(null, ex.toString());
@@ -468,6 +469,7 @@ public class QLSinhVien extends javax.swing.JFrame {
             else{
                 JOptionPane.showMessageDialog(null, "Không tồn tại mã sinh viên cần sửa");
             }
+            xoaTrang();
         }
         catch (Exception ex) {
            JOptionPane.showMessageDialog(null, ex.toString());
@@ -505,6 +507,7 @@ public class QLSinhVien extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
+        xoaTrang();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
@@ -542,12 +545,12 @@ public class QLSinhVien extends javax.swing.JFrame {
                     row.add(rs.getString("MatKhau"));
                     tableModel.addRow(row);
                     JOptionPane.showMessageDialog(null, "Có mã sv cần tìm");
-                    xoaTrang();
                 }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Không tìm thấy mã sinh viên này");
             }
+            xoaTrang();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
